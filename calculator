@@ -1,0 +1,64 @@
+#!/usr/bin/env node
+
+var prog = require('caporal');
+
+
+function add(n1, n2) { 
+    return n1 + n2 
+}
+
+function sub(n1, n2) { 
+    return n1 - n2 
+}
+
+function mul(n1, n2) { 
+    return n1 * n2 
+}
+
+function div(n1, n2) { 
+    if (n2 === 0)
+	return 'cannot div to zero';
+    return n1 / n2 ; 
+}
+
+prog
+    .command('add')
+    .argument('num1','number 1', prog.INT)
+    .argument('num2','number 2', prog.INT)
+    .action((args, options, logger) => { 
+	res = add(args.num1 , args.num2);
+	console.log(res)
+    });
+
+
+prog
+    .command('sub')
+    .argument('num1','number 1', prog.INT)
+    .argument('num2','number 2', prog.INT)
+    .action((args, options, logger) => {
+	res = sub(args.num1 , args.num2);
+	console.log(res)
+    });
+
+
+prog
+    .command('mul')
+    .argument('num1','number 1', prog.INT)
+    .argument('num2','number 2', prog.INT)
+    .action((args, options, logger) => {
+	res = mul(args.num1 , args.num2);
+	console.log(res)
+    });
+
+    
+prog
+    .command('div')
+    .argument('num1','number 1', prog.INT)
+    .argument('num2','number 2', prog.INT)
+    .action((args, options, logger) => {
+	res = div(args.num1 , args.num2);
+	console.log(res)
+    });
+
+prog.parse(process.argv); 
+
